@@ -1,0 +1,45 @@
+name: Deploy Credit Scoring FastAPI endpoint
+
+on:
+  push:
+    branches: [ "name-of-your-branch" ]
+  pull_request:
+    branches: [ "name-of-your-branch" ]
+
+jobs:
+  deploy-fast-api:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ./02-aws-eb-depoloyment/fastapi-app
+
+    steps:
+    - name: Checking everything from 02-aws-eb-deployment/fast-api
+      uses: actions/checkout@v3
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+      
+    - name: Get timestamp
+      uses: gerred/actions/current-time@master
+      id: current-time
+
+    - name: Run string replace
+      uses: frabert/replace-string-action@master
+      id: format-time
+      with:
+        pattern: '[:\.]+'
+        string: "${{ steps.current-time.outputs.time }}"
+        replace-with: '-'
+        flags: 'g'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: name-of-app-from-aws-eb
+        environment_name: name-of-env-from-aws-eb
+        version_label:  "credit-scoring-api-deployment-${{ steps.format-time.outputs.replaced }}"
+        region: eu-north-1
+        deployment_package: ./02-aws-eb-depoloyment/fastapi-app/deploy.zip

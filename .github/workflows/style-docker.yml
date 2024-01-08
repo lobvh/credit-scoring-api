@@ -1,0 +1,19 @@
+name: Style Checking docker-compose part
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  style-check-docker-compose:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ./01-docker-image
+        
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check code style via flake8 and black for Dockerized app
+      run: make check-style

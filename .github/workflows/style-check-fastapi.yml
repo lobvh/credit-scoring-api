@@ -1,0 +1,20 @@
+name: Style Checking FastAPI endpoint
+
+on:
+  push:
+    branches: [ "your-branch-name" ]
+  pull_request:
+    branches: [ "your-branch-name" ]
+
+jobs:
+  style-check-fastapi-endpoint:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ./02-aws-eb-depoloyment/fastapi-app
+
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Check code style via flake8 and black for fastapi
+      run: make check-style

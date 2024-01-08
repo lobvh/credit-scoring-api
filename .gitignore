@@ -1,0 +1,11 @@
+#Ignore all .ipynb_checkpoints dirs and subdirs
+.ipynb_checkpoints
+.ipynb_checkpoints/*
+*/.ipynb_checkpoints/*
+
+#Ignore all __pycache__ dirs and subdirs
+__pycache__
+__pycache__/*
+*/__pycache__/*
+/pycache/*
+

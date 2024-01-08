@@ -1,0 +1,26 @@
+name: Style-Checking All Repo
+
+on:
+  push:
+    branches: [ "your-branch-name" ]
+  pull_request:
+    branches: [ "your-branch-name" ]
+
+jobs:
+  style-check-all:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check code style via flake8 and black for docker-compose 
+      run: make check-style
+      working-directory: ./01-docker-image
+
+    - name: Check code style via flake8 and black for Streamlit app
+      run: make format
+      working-directory: ./02-aws-eb-depoloyment/streamlit-app
+      
+    - name: Check code style via flake8 and black for FastAPI endpoint
+      run: make check-style
+      working-directory: ./02-aws-eb-depoloyment/fastapi-app

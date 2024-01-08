@@ -1,0 +1,20 @@
+name: Style Checking Streamlit Web UI
+
+on:
+  push:
+    branches: [ "name-of-your-branch" ]
+  pull_request:
+    branches: [ "name-of-your-branch" ]
+
+jobs:
+  style-check-streamlit:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ./02-aws-eb-depoloyment/streamlit-app
+        
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check code style via flake8 and black for streamlit app
+      run: make format
