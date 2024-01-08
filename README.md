@@ -87,8 +87,8 @@ Once the fresh environment is set, the rest of the process relies on using `make
 
 1. Clone the Repository:
    ```bash   
-   git clone https://github.com/LINK HERE
-   cd working-dir
+   git clone https://github.com/lobvh/credit-scoring-api
+   cd credit-scoring-api
    ```
 2. (Optional) If you haven't yet, set up a new Virtual Environment and activate it.
 3. Run `Docker Desktop`
