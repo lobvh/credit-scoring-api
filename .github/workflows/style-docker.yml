@@ -1,9 +1,9 @@
 name: Style Checking docker-compose part
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "name-of-your-branch" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "name-of-your-branch" ]
 
 jobs:
   style-check-docker-compose:
