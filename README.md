@@ -74,7 +74,7 @@ If you are interested in the exploratory data analysis (EDA) portion and the dec
   
     ```Python 3.12.0```
   
-    ```Python <=3.11.0``` --> Only if your method of deployment is using `awsebcli`. 
+    ```Python <=3.11.0``` --> Only if your method of deployment is using `awsebcli`. See [this](https://github.com/aws/aws-elastic-beanstalk-cli/issues/493) issue.
 
 - Docker Desktop
 
